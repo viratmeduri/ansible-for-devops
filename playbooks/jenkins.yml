@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: get jenkins url
+    ansible.builtin.get_url:
+      url: wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+  - name: install "{{ item }}"
+    yum: 
+       name: "{{ item }}"
+    with_items: 
+      - java-1.8.0-openjdk-devel
+      - jenkins
