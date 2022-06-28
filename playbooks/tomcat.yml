@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: install "{{ item }}"
+    yum:
+      name:"{{ item }}"
+    with_items:
+      - tomcat
+      - nginx
